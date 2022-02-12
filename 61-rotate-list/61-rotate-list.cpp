@@ -9,34 +9,22 @@
  * };
  */
 class Solution {
-private:
-    void rev(vector<int> &arr, int start, int end){
-        while(start < end){
-            swap(arr[start++], arr[end--]);
-        }
-    }
-    void rotate(vector<int> &arr, int k, int size){
-        rev(arr,0,size - k - 1);
-        rev(arr,size - k,size - 1);
-        rev(arr,0,size - 1);
-    }
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-        if(head == NULL) return NULL;
-        ListNode* p = head;
-        vector<int> arr;
-        while(p != NULL){
-            arr.push_back(p->val);
-            p = p->next;
-        }
-        int n = arr.size();
-        k = k % n;
-        rotate(arr, k, n);
+        if(head == NULL || head->next == NULL || k == 0) return head;
         ListNode* temp = head;
-        for(int i = 0; i < n; i++){
-            temp->val = arr[i];
+        int size = 1;
+        while(temp->next != NULL){
+            size++;
             temp = temp->next;
         }
+        k = k % size;
+        temp->next = head;
+        for(int i = size - 1; i > k - 1; i--){
+            temp = temp->next;
+        }
+        head = temp->next;
+        temp->next = NULL;
         return head;
     }
 };
