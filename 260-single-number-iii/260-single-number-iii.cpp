@@ -1,15 +1,24 @@
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        vector<int> res;
-        int n = nums.size();
-        for(int i = 0; i < n; i++){
-            if((i == 0 || nums[i - 1] != nums[i]) &&
-               (i == n - 1 || nums[i + 1] != nums[i])){
-                   res.push_back(nums[i]);
-               }
+        int res = 0;
+        for(int &x : nums){
+            res ^= x;
         }
-        return res;
+        int t;
+        for(int i=0;i<32;i++){
+            if(res&(1<<i)){
+                t=i;break;
+            }
+        }
+        int temp = res;
+        for(int &x : nums){
+            if(x & (1 << t)){
+                res ^= x;
+            }
+        }
+        int n1 = res;
+        res ^= temp;
+        return {n1,res};
     }
 };
