@@ -12,16 +12,9 @@ class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
         if(head == NULL || head->next == NULL) return head;
-        ListNode* p = head;
         ListNode* t = head->next;
-        while(t->next != NULL){
-            swap(p->val,t->val);
-            p = p->next;
-            t = t->next;
-            if(p!=NULL) p = p->next;
-            if(t->next!=NULL) t = t->next;
-        }
-        swap(p->val,t->val);
-        return head;
+        head->next = swapPairs(head->next->next);
+        t->next = head;
+        return t;
     }
 };
