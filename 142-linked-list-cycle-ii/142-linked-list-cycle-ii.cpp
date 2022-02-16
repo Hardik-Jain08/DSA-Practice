@@ -10,11 +10,14 @@ class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
         if(head == NULL || head->next == NULL) return NULL;
-        while(head->next != NULL){
-            head = head->next;
-            if(head >= head->next){
-                return head->next;
+        unordered_map<ListNode*, bool> umap;
+        ListNode* p = head;
+        while(p!=NULL){
+            if(umap[p] == true){
+                return p;
             }
+            umap[p] = true;
+            p = p->next;
         }
         return NULL;
     }
