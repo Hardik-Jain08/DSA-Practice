@@ -21,7 +21,6 @@ public:
             if(p!=NULL) p = p->next;
             if(t->next!=NULL) t = t->next;
         }
-        if(t != NULL)
         swap(p->val,t->val);
         return head;
     }
