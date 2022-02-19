@@ -1,75 +1,38 @@
 class Solution {
 public:
     string removeKdigits(string num, int k) {
-        // stack<char> st;
-        // int n = num.size();
-        // int i = 0;
-        // while(i < n || k > 0){
-        //     if(st.empty() && num[i] == '0'){
-        //         i++;
-        //         continue;  
-        //     } 
-        //     st.push(num[i]);
-        //     i++;
-        //     if(st.top() > num[i]){
-        //         st.pop();
-        //         k--;
-        //     }
-        // }
-        // string res = "";
-        // if(st.empty()) return "0";
-        //     while (!st.empty()) {
-        //     res += st.top();
-        //     st.pop();
-        // }
-        // reverse(res.begin(), res.end());
-        // return res;
-        if(num.length() <= k)   
+        if(num.size() <= k)   
             return "0";
         
-        // k is 0 , no need of removing /  preforming any operation
         if(k == 0)
             return num;
         
-        string res = "";// result string
-        stack <char> s; // char stack
-        
-        s.push(num[0]); // pushing first character into stack
-        
-        for(int i = 1; i<num.length(); ++i)
-        {
-            while(k > 0 && !s.empty() && num[i] < s.top())
-            {
-                // if k greater than 0 and our stack is not empty and the upcoming digit,
-                // is less than the current top than we will pop the stack top
-                --k;
-                s.pop();
+        stack<char> st;
+        int n = num.size();
+        st.push(num[0]);
+        for(int i = 1; i < n; i++){
+            while(!st.empty() && k > 0 && st.top() > num[i]){
+                st.pop();
+                k--;
             }
-            
-            s.push(num[i]);
-            
-            // popping preceding zeroes
-            if(s.size() == 1 && num[i] == '0')
-                s.pop();
+            st.push(num[i]);
+            if(st.size() == 1 && num[i] == '0')
+                st.pop();
+        }
+        while(k && !st.empty()){
+            k--;
+            st.pop();
         }
         
-        while(k && !s.empty())
-        {
-            // for cases like "456" where every num[i] > num.top()
-            --k;
-            s.pop();
+        if(st.empty()) return "0";
+        
+        string res = "";
+        
+        while (!st.empty()) {
+            res += st.top();
+            st.pop();
         }
-        
-        while(!s.empty())
-        {
-            res.push_back(s.top()); // pushing stack top to string
-            s.pop(); // pop the top element
-        }
-        
-        reverse(res.begin(),res.end()); // reverse the string 
-        
-        if(res.length() == 0)
-            return "0";
+        reverse(res.begin(), res.end());
         
         return res;
     }
