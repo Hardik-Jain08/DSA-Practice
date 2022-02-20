@@ -2,44 +2,29 @@ class Solution {
 public:
     int minimumDeviation(vector<int>& nums) {
         int n = nums.size();
-        int mx = INT_MIN, mn = INT_MAX;
-        
-        // Increasing all elements to as maximum as it can and tranck the minimum,
-        // number and also the resutl
-        for(int i = 0; i<n; ++i)
-        {
-            if((nums[i]%2) != 0)    // multiplication by 2 if nums[i] is odd
-                nums[i] *= 2;   // maximising all odd numbers
-
-        
-            mx = max(mx,nums[i]);
-            mn = min(mn,nums[i]);
+        int minn = INT_MAX, maxx = INT_MIN;
+        for(int i = 0; i < n; i++){
+            if((nums[i] & 1) != 0){
+                nums[i] <<= 1;
+            }
+            minn = min(nums[i], minn);
+            maxx = max(nums[i], maxx);
         }
-        
-        int min_deviation = mx - mn;
-        
+        int min_dev = maxx - minn;
         priority_queue<int> pq;
-        // Inserting into Priority queue (Max Heap) and try to decrease as much we can
-        for(int i = 0; i<n; ++i)
-        {
+        for(int i = 0; i < n; i++){
             pq.push(nums[i]);
         }
         
-        while((pq.top()) % 2 == 0)
-        {
+        while((pq.top() & 1) == 0){
             int top = pq.top();
-            pq.pop(); // popped the top element
-            
-            min_deviation = min(min_deviation, top - mn);
-            top /= 2;
-            mn = min(mn, top);  // updating min
-            pq.push(top);   // pushing again the top as we have to minimize the max
+            pq.pop();
+            min_dev = min(min_dev, top - minn);
+            top >>= 1;
+            pq.push(top);
+            minn = min(minn, top);
         }
-        
-        min_deviation = min(min_deviation, pq.top() - mn);
-        
-        // we are returning mx - mn
-        
-        return min_deviation;
+        min_dev = min(min_dev, pq.top() - minn);
+        return min_dev;
     }
 };
