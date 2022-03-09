@@ -7,8 +7,8 @@ public:
         for(int i = 0; i < n; i++){
             freq[nums[i]]++;
         }
-        for(auto &x: freq){
-            if(freq[x.first] > 1) return true;
+        for(auto &x: nums){
+            if(freq[x] > 1) return true;
         }
         return false;
     }
