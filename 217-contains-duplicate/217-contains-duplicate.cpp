@@ -3,8 +3,12 @@ public:
     bool containsDuplicate(vector<int>& nums) {
         sort(nums.begin(), nums.end());
         int n = nums.size();
-        for(int i = 1; i < n; i++){
-            if(nums[i] == nums[i - 1]) return true;
+        unordered_map<int,int> freq;
+        for(int i = 0; i < n; i++){
+            freq[nums[i]]++;
+        }
+        for(auto &x: freq){
+            if(freq[x.first] > 1) return true;
         }
         return false;
     }
