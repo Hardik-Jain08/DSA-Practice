@@ -27,7 +27,6 @@ public:
             ptr->next->next = temp;
             ptr = temp;
         }
-// List Updated to: [7]-[copy7]->[13]->[copy13]... 
 
 //  Updating the random pointers
 	ptr = head;
