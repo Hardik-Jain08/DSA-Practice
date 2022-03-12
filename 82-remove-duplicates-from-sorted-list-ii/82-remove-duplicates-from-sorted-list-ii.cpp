@@ -27,8 +27,8 @@ public:
                     curr = curr->next;
                     prev->next = curr;
                 }else{//if starting elements are duplicates
-                    head = curr->next;
                     curr = curr->next;
+                    head = curr;
                 }
             }else{// if next element is distinct
                 prev = curr;
