@@ -10,46 +10,31 @@
  */
 class Solution {
 public:
-    // ListNode* deleteDuplicates(ListNode* head) {
-    //     if(!head || !head->next) return head;
-    //     ListNode sentinel(0,head);
-    //     ListNode* ptr = head->next;
-    //     ListNode* curr = head;
-    //     // head = &sentinel;
-    //     while(ptr != NULL ){
-    //         if(curr->val != ptr->val){
-    //             head->next = curr;
-    //             head = head->next;
-    //             curr->next = ptr;
-    //             ptr = ptr->next;
-    //         }else{
-    //             ptr = ptr->next;
-    //         }
-    //     }
-    //     return sentinel.next;
-    // }
     ListNode* deleteDuplicates(ListNode* head) {
-    if(head == NULL || head->next == NULL) return head;
-    
-    ListNode* curr = head;
-    ListNode* prev = NULL;
-    while(curr != NULL && curr->next != NULL) {
-        if(curr->val == curr->next->val) {
-            while(curr->next != NULL && curr->val == curr->next->val) {
+        //base case
+        if(head == nullptr || head->next == nullptr) return head;
+        
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        
+        while(curr != nullptr && curr->next != nullptr){
+            //if next elements is duplicate
+            if(curr->val == curr->next->val){
+                while(curr->next != nullptr && curr->val == curr->next->val){
+                    curr = curr->next;
+                }
+                if(prev != nullptr){
+                    curr = curr->next;
+                    prev->next = curr;
+                }else{//if starting elements are duplicates
+                    head = curr->next;
+                    curr = curr->next;
+                }
+            }else{// if next element is distinct
+                prev = curr;
                 curr = curr->next;
             }
-            if(prev != NULL) {
-                prev->next = curr->next;
-                curr = curr->next;    
-            }else {
-                head = curr->next;
-                curr = curr->next;   
-            }
-        }else {
-            prev = curr;
-            curr = curr->next;
         }
-    }
-    return head;
+        return head;
     }
 };
