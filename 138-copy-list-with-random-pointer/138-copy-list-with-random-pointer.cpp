@@ -13,35 +13,21 @@ public:
     }
 };
 */
-
 class Solution {
 public:
-     Node* copyRandomList(Node* head) {
-        if(!head) 
-            return head;
-// Modifying the input list:
-        Node *temp = head, *ptr = head;
+    Node* copyRandomList(Node* head) {
+        map<Node*, Node*> umap;
+        Node* ptr = head;
         while(ptr){
-            temp = ptr->next;
-            ptr->next = new Node(ptr->val);
-            ptr->next->next = temp;
-            ptr = temp;
+            umap[ptr] = new Node(ptr->val);
+            ptr = ptr->next;
         }
-
-//  Updating the random pointers
-	ptr = head;
-    while(ptr){
-            ptr->next->random = (ptr->random)? ptr->random->next : nullptr;
-            ptr = ptr->next->next;
+        ptr = head;
+        while(ptr){
+            umap[ptr]->next = umap[ptr->next];
+            umap[ptr]->random = umap[ptr->random];
+            ptr = ptr->next;
         }
-//  Disconnecting to generate cloned list.
-        Node *copyHead = head->next, *copyptr = head->next;
-        while(head){
-            head->next = head->next->next;
-            copyptr->next = copyptr->next? copyptr->next->next : nullptr;
-            head = head->next;
-            copyptr = copyptr->next;
-        }   
-     return copyHead; 
+        return umap[head];
     }
 };
