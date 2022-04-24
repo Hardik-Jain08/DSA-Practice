@@ -13,14 +13,13 @@ public:
     void checkOut(int id, string stationName, int t) {
         outMap[id] = make_pair(stationName, t);
         string s = checkMap[id].first + "-" + outMap[id].first;
-        if(finalMap[s].second)
         finalMap[s] = make_pair(finalMap[s].first + (outMap[id].second - checkMap[id].second), ++finalMap[s].second);
-        else finalMap[s] = make_pair(outMap[id].second - checkMap[id].second, 1);
+        
     }
     
     double getAverageTime(string startStation, string endStation) {
         string s = startStation + "-" + endStation;
-        cout << finalMap[s].first << endl << finalMap[s].second << endl;
+        // cout << finalMap[s].first << endl << finalMap[s].second << endl;
         return double(finalMap[s].first) / double(finalMap[s].second);
     }
 };
