@@ -4,19 +4,15 @@ public:
         stack<pair<char,int>> st;
         int i = 0, n = s.size();
         for(i = 0; i < n; i++){
-            int temp;
             if(st.empty() || st.top().first != s[i]){
                 st.push({s[i], 1});
             }else{
-                temp = st.top().second + 1;
-                st.pop();
-                st.push({s[i], temp});
+                st.top().second++;
             }
             if(st.top().second >= k){
-                temp -= k;
-                st.pop();
-                if(temp){
-                    st.push({s[i], temp});
+                st.top().second -= k;
+                if(st.top().second == 0){
+                    st.pop();
                 }
             }
         }
