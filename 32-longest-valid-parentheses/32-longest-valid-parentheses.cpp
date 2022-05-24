@@ -9,8 +9,8 @@ public:
             if(s[i] == '('){
                 st.push(i);
             }else{
-                st.pop();
-                if(!st.empty()){
+                if(!st.empty() && st.size() > 1 && s[st.top()] == '('){
+                    st.pop();
                     ans = max(ans, i - st.top());
                 }else{
                     st.push(i);
