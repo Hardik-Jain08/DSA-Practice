@@ -1,11 +1,13 @@
 class Solution {
 public:
     int minMoves(vector<int>& nums) {
-        int mn = *min_element(nums.begin(), nums.end());
-        int ans = 0, n = nums.size();
-        for(int i = 0; i < n; i++){
-            ans += (nums[i] - mn);
+        long sum = nums[0];
+        int mn = nums[0];
+        int n = nums.size();
+        for(int i = 1; i < n; i++){
+            mn = min(mn, nums[i]);
+            sum += nums[i];
         }
-        return ans;
+        return (int)sum - n * mn;
     }
 };
