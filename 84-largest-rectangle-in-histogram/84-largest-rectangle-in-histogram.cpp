@@ -1,0 +1,56 @@
+class Solution
+{
+    public:
+        int largestRectangleArea(vector<int> &arr)
+        {
+            int n = arr.size();
+            int ans = 0;
+            vector<int> left(n, 0);
+            stack<int> st_l;
+            st_l.push(0);
+            left[0] = -1;
+            for (int i = 1; i < n; i++)
+            {
+                while (!st_l.empty() && arr[st_l.top()] >= arr[i])
+                {
+                    st_l.pop();
+                }
+                if (st_l.empty())
+                {
+                    left[i] = -1;
+                }
+                else
+                {
+                    left[i] = st_l.top();
+                }
+                st_l.push(i);
+            }
+
+            vector<int> right(n, 0);
+            stack<int> st_r;
+            st_r.push(n - 1);
+            right[n - 1] = n;
+            for (int i = n - 2; i >= 0; i--)
+            {
+                while (!st_r.empty() && arr[st_r.top()] >= arr[i])
+                {
+                    st_r.pop();
+                }
+                if (st_r.empty())
+                {
+                    right[i] = n;
+                }
+                else
+                {
+                    right[i] = st_r.top();
+                }
+                st_r.push(i);
+            }
+            for (int i = 0; i < n; i++)
+            {
+               	// cout << left[i] << " " << right[i] << endl;
+                ans = max(ans, (right[i] - left[i] - 1) *arr[i]);
+            }
+            return ans;
+        }
+};
