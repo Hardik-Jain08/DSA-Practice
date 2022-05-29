@@ -7,9 +7,8 @@ class Solution
             int ans = 0;
             vector<int> left(n, 0);
             stack<int> st_l;
-            st_l.push(0);
-            left[0] = -1;
-            for (int i = 1; i < n; i++)
+            
+            for (int i = 0; i < n; i++)
             {
                 while (!st_l.empty() && arr[st_l.top()] >= arr[i])
                 {
@@ -28,9 +27,8 @@ class Solution
 
             vector<int> right(n, 0);
             stack<int> st_r;
-            st_r.push(n - 1);
-            right[n - 1] = n;
-            for (int i = n - 2; i >= 0; i--)
+            
+            for (int i = n - 1; i >= 0; i--)
             {
                 while (!st_r.empty() && arr[st_r.top()] >= arr[i])
                 {
