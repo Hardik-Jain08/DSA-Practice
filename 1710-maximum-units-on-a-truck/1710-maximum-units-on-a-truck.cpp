@@ -1,21 +1,13 @@
 class Solution {
 public:
-    static bool cmp(const pair<int,int> &a,
-              const pair<int,int> &b){
-        return (a.second > b.second);
-    }
-    int maximumUnits(vector<vector<int>>& boxTypes, int truckSize) {
-        int n = boxTypes.size();
-        vector<pair<int,int>> vec;
-        for(int i = 0; i < n; i++){
-            vec.push_back({boxTypes[i][0],boxTypes[i][1]});
-        }
-        sort(vec.begin(), vec.end(), cmp);
+    int maximumUnits(vector<vector<int>>& box, int truckSize) {
+        int n = box.size();
+        sort(box.begin(), box.end(), [](auto &a, auto &b){return a[1] > b[1];});
         int ans = 0;
         for(int i = 0; i < n; i++){
             if(truckSize <= 0) break;
-            ans += min(truckSize, vec[i].first) * vec[i].second;
-            truckSize -= vec[i].first;
+            ans += min(truckSize, box[i][0]) * box[i][1];
+            truckSize -= box[i][0];
         }
         return ans;
     }
