@@ -6,9 +6,9 @@ public:
         int pf = 0, n = nums.size();
         for(int i = 0; i < n; i++){
             pf = (nums[i] + pf) % k;
-            if(mp.find(pf) != mp.end() && (i - mp[pf] >= 2))
-                return true;
             mp.insert({pf, i});
+            if(i - mp[pf] >= 2)
+                return true;
         }
         return false;
     }
