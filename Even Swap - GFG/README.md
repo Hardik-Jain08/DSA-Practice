@@ -5,7 +5,7 @@
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:</strong>
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong>
 N=3
 a[]={1,3,5}
 <strong>Output:</strong>
@@ -13,20 +13,20 @@ a[]={1,3,5}
 <strong>Explanation: </strong>[1,3,5],[1,5,3],[3,1,5],[3,5,1],
 [5,1,3] and [5,3,1] are all possible
 values of array <strong>b</strong> while the last one is 
-lexicographically largest.</span></pre>
+lexicographically largest.</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p>&nbsp;</p>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:</strong>
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong>
 N=4
 a[]={1,3,4,2}
 <strong>Output:</strong>
 b[]={3,1,4,2}
 <strong>Explanation:</strong> [1,3,4,2],[1,3,2,4],[3,1,2,4] and 
 [3,1,4,2] are all possible values of <strong>b</strong> among 
-which the last one is lexicographically largest one.</span></pre>
+which the last one is lexicographically largest one.</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p>&nbsp;</p>
 
