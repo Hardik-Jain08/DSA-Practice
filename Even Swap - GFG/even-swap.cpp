@@ -12,14 +12,19 @@ class Solution
     public:
         vector <int> lexicographicallyLargest(vector <int> &a,int n)
         {
-            int j = 0;
-            for(int i = 0; i < n; i++) {
-                if(((1LL * a[i] + a[j])&1)) {
-                    sort(a.begin() + j, a.begin() + i, greater<int>());
-                    j = i;
+            // Code here
+            int i=0;
+            while(i<n)
+            {
+                int j=i+1;
+                while(j<n && (a[j]+a[i])%2==0)
+                {
+                    j++;
                 }
+                
+                sort(a.begin()+i,a.begin()+j,greater<int>());
+                i=j;
             }
-            sort(a.begin() + j, a.end(), greater<int>());
             return a;
         }
 };
