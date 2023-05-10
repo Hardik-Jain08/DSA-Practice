@@ -5,28 +5,28 @@
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 <img alt="" src="https://assets.leetcode.com/uploads/2020/08/14/sample_1911.png" style="width: 336px; height: 174px;">
-<pre><strong>Input:</strong> mat = [[<strong>1</strong>,2,<strong>3</strong>],
+<pre style="position: relative;"><strong>Input:</strong> mat = [[<strong>1</strong>,2,<strong>3</strong>],
 &nbsp;             [4,<strong>5</strong>,6],
 &nbsp;             [<strong>7</strong>,8,<strong>9</strong>]]
 <strong>Output:</strong> 25
 <strong>Explanation: </strong>Diagonals sum: 1 + 5 + 9 + 3 + 7 = 25
 Notice that element mat[1][1] = 5 is counted only once.
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre><strong>Input:</strong> mat = [[<strong>1</strong>,1,1,<strong>1</strong>],
+<pre style="position: relative;"><strong>Input:</strong> mat = [[<strong>1</strong>,1,1,<strong>1</strong>],
 &nbsp;             [1,<strong>1</strong>,<strong>1</strong>,1],
 &nbsp;             [1,<strong>1</strong>,<strong>1</strong>,1],
 &nbsp;             [<strong>1</strong>,1,1,<strong>1</strong>]]
 <strong>Output:</strong> 8
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><strong class="example">Example 3:</strong></p>
 
-<pre><strong>Input:</strong> mat = [[<strong>5</strong>]]
+<pre style="position: relative;"><strong>Input:</strong> mat = [[<strong>5</strong>]]
 <strong>Output:</strong> 5
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
