@@ -10,19 +10,18 @@
  */
 class Solution {
 public:
+    ListNode* node = nullptr;
+    int mx = 0;
+    void helper(ListNode* head) {
+        if(head) {
+            helper(head->next);
+            mx = max(mx, node->val+head->val);
+            node = node->next;
+        }
+    }
     int pairSum(ListNode* head) {
-        ListNode* p = head;
-        vector<int> vec;
-        while(p != NULL){
-            vec.push_back(p->val);
-            p = p->next;
-        }
-        int vfront = 0, vback = vec.size() - 1;
-        int sum = 0, mxSum = 0;
-        while(vfront < vback){
-            sum = vec[vfront++] + vec[vback--];
-            mxSum = max(sum,mxSum);
-        }
-        return mxSum;
+        node = head;
+        helper(head);
+        return mx;
     }
 };
