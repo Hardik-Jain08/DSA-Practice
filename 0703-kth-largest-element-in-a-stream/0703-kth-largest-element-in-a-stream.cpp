@@ -12,12 +12,9 @@ public:
     }
     
     int add(int val) {
-        if(pq.size() < t) {
-            pq.push(val);
-        }else if(val > pq.top()) {
-            pq.push(val);
+        pq.push(val);
+        if(pq.size() > t)
             pq.pop();
-        }
         return pq.top();
     }
 };
