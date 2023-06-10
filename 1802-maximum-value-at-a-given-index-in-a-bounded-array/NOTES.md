@@ -1,0 +1,1 @@
+// n/2(a+an) sum of A.P
